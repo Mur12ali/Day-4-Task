@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest Countries</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Flag</th>
+            </tr>
+        </thead>
+        <tbody id="result">
+
+        </tbody>
+    </table>
+
+    <script>
+        $.ajax({
+            url:"https://restcountries.com/v2/all",
+            type:"get",
+            success:function(data){
+                var rs ="";
+                for(i in data){
+                    rs +="<tr>";
+                    rs +="<td>"+i+"</td>"
+                    rs +="<td>"+data[i].name+"</td>";
+                    rs +="<td><img src='"+data[i].flag+"' style='height:100px;width:100%'</td>";
+                    rs +="</tr>";
+                }
+                document.getElementById("result").innerHTML = rs
+            }
+        })
+    </script>
+</body>
+</html>
